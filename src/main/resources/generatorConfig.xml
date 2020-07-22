@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+
+    <!-- 1 -->
+    <classPathEntry location="C:\Users\gychen\.m2\repository\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar" />
+
+    <context id="mysqlTables" targetRuntime="MyBatis3">
+        <!-- 2 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>   <!-- 自己添加的 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/library?serverTimezone=GMT%2B8"
+                        userId="root"
+                        password="1996chen">
+            <property name="nullCatalogMeansCurrent" value="true"/>  <!-- 自己添加的 -->
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 3 -->
+        <!-- 生成实体类 和数据库表一一对应 -->
+        <javaModelGenerator targetPackage="com.gychen.po" targetProject="G:\MyStudy\SpringBootStudy\Spring5\libraryManagerSystem\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 4 -->
+        <!-- 映射dao层对应的xml文件 -->
+        <sqlMapGenerator targetPackage="com.gychen.dao"  targetProject="G:\MyStudy\SpringBootStudy\Spring5\libraryManagerSystem\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gychen.dao"  targetProject="G:\MyStudy\SpringBootStudy\Spring5\libraryManagerSystem\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 5 -->
+        <!-- 对应的数据表 -->
+        <!--官方的模板-->
+        <table schema="DB2ADMIN" tableName="admin" domainObjectName="Admin" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+            <columnOverride column="DATE_FIELD" property="startDate" />
+            <ignoreColumn column="FRED" />
+            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+        </table>
+        <!-- 自定义的模板 -->
+        <table tableName="book_info" domainObjectName="BookInfo"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="class_info" domainObjectName="ClassInfo"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="lend_list" domainObjectName="LendList"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="notice" domainObjectName="Notice"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="reader_card" domainObjectName="ReaderCard"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="reader_info" domainObjectName="ReaderInfo"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
